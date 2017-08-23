@@ -27,13 +27,3 @@ func add( a int, b int ) int {
 func add_and_validate( a int, b int ) ( bool, int ) {
     return true, a + b
 }
-
-
-// func main() {
-//   power := getPower()
-//   fmt.Printf("It's over %d\n", power)
-// }
-
-// func getPower() int {
-//   return 9001
-// }
