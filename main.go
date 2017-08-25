@@ -20,18 +20,64 @@ func main() {
 
     setup_saiyans()
 
+    // copy/pointer experimentation
+    print_as_copy()
+    print_as_pointer()
+
+}  // end func main()
+
+
+/* copy/pointer experimentation */
+
+type Saiyan struct {
+    Name string
+    Power int
 }
 
+func print_as_copy() {
+    goku := Saiyan{ "Goku", 9000 }
+    SuperCopy( goku )
+    fmt.Printf( "copied power, ```%d```\n", goku.Power )
+}
+
+func print_as_pointer() {
+    goku := &Saiyan{ "Goku", 9000 }
+    SuperPointer( goku )
+    fmt.Printf( "pointered power, ```%d```\n", goku.Power )
+}
+
+func SuperCopy(s Saiyan) {
+    s.Power += 10000
+}
+
+func SuperPointer(s *Saiyan) {
+    s.Power += 10000
+    // s = &Saiyan{"Gohan", 1000}
+    // fmt.Printf( "s, ```%s```\n", s )
+}
+
+/* --- */
+
+
+/* add() experimentation */
 
 func add( a int, b int ) int {
     return a + b
 }
 
+/* --- */
+
+
+/* add_and_validate() experimentation */
 
 func add_and_validate( a int, b int ) ( bool, int ) {
     return true, a + b
 }
 
+/* --- */
+
+
+/* initial struct experimentation */
 
 func setup_saiyans() {
     // define the struct
@@ -52,4 +98,4 @@ func setup_saiyans() {
     fmt.Printf( "birkin power, ```%d```\n", birkin.Power )
 }
 
-
+/* --- */
