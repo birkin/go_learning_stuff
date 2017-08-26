@@ -29,13 +29,10 @@ func main() {
       Person: &Person{"Goku"},
       Power: 9001,
     }
-    run_introduce( goku )
+    run_noncomposed_introduce( goku )
     var err bool
-    err = run_introduce_with_errorcheck( goku )
+    err = run_composed_introduce_with_errorcheck( goku )
     fmt.Printf( "err, `%t`\n", err )
-    // goku.Introduce()
-    // fmt.Println(goku.Name)
-    // fmt.Println(goku.Person.Name)
 
 }  // end func main()
 
@@ -55,14 +52,18 @@ func (p *Person) Introduce() {
   fmt.Printf("Hi, I'm %s\n", p.Name)
 }
 
-func run_introduce(g *SaiyanComp) {
+func (s *SaiyanComp) Introduce() {
+  fmt.Printf("Hi, I'm %s. Ya!\n", s.Name)
+}
+
+func run_noncomposed_introduce(g *SaiyanComp) {
     g.Introduce()
     fmt.Println(g.Name)
     fmt.Println(g.Person.Name)
 }
 
-func run_introduce_with_errorcheck(g *SaiyanComp) (bool) {
-    g.Introduce()
+func run_composed_introduce_with_errorcheck(g *SaiyanComp) (bool) {
+    g.Person.Introduce()
     fmt.Println(g.Name)
     fmt.Println(g.Person.Name)
     return false
