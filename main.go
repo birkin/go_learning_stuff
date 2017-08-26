@@ -24,7 +24,51 @@ func main() {
     print_as_copy()
     print_as_pointer()
 
+    // composition
+    goku := &SaiyanComp{
+      Person: &Person{"Goku"},
+      Power: 9001,
+    }
+    run_introduce( goku )
+    var err bool
+    err = run_introduce_with_errorcheck( goku )
+    fmt.Printf( "err, `%t`\n", err )
+    // goku.Introduce()
+    // fmt.Println(goku.Name)
+    // fmt.Println(goku.Person.Name)
+
 }  // end func main()
+
+
+/* composition experimentation */
+
+type Person struct {
+  Name string
+}
+
+type SaiyanComp struct {
+  *Person
+  Power int
+}
+
+func (p *Person) Introduce() {
+  fmt.Printf("Hi, I'm %s\n", p.Name)
+}
+
+func run_introduce(g *SaiyanComp) {
+    g.Introduce()
+    fmt.Println(g.Name)
+    fmt.Println(g.Person.Name)
+}
+
+func run_introduce_with_errorcheck(g *SaiyanComp) (bool) {
+    g.Introduce()
+    fmt.Println(g.Name)
+    fmt.Println(g.Person.Name)
+    return false
+}
+
+/* --- */
 
 
 /* copy/pointer experimentation */
